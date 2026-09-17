@@ -1,0 +1,561 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0 !important;
+  padding:0 !important;
+}
+
+.parth-vip-page{
+  position:relative;
+  width:100%;
+  min-height:100svh;
+  margin:0;
+  padding:35px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,40,140,.38),transparent 32%),
+    radial-gradient(circle at 85% 75%,rgba(62,90,255,.42),transparent 35%),
+    linear-gradient(135deg,#080514 0%,#16051f 45%,#040d22 100%);
+}
+
+/* LIVE BACKGROUND */
+.parth-vip-page::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  top:-240px;
+  right:-180px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff238f,#703cff);
+  filter:blur(85px);
+  opacity:.38;
+  animation:parthLightOne 9s ease-in-out infinite alternate;
+}
+
+.parth-vip-page::after{
+  content:"";
+  position:absolute;
+  width:450px;
+  height:450px;
+  left:-200px;
+  bottom:-230px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#006eff,#00d9ff);
+  filter:blur(90px);
+  opacity:.30;
+  animation:parthLightTwo 10s ease-in-out infinite alternate;
+}
+
+@keyframes parthLightOne{
+  from{transform:translate(0,0) scale(1)}
+  to{transform:translate(-80px,80px) scale(1.25)}
+}
+
+@keyframes parthLightTwo{
+  from{transform:translate(0,0) scale(1)}
+  to{transform:translate(100px,-70px) scale(1.25)}
+}
+
+/* MOVING GRID */
+.parth-grid{
+  position:absolute;
+  inset:-60%;
+  width:220%;
+  height:220%;
+  opacity:.12;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px);
+  background-size:55px 55px;
+  transform:perspective(550px) rotateX(58deg);
+  animation:parthGridMove 12s linear infinite;
+}
+
+@keyframes parthGridMove{
+  from{background-position:0 0}
+  to{background-position:0 110px}
+}
+
+/* FLOATING PARTICLES */
+.parth-particle{
+  position:absolute;
+  bottom:-20px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 15px #fff;
+  opacity:0;
+  animation:parthParticle 7s linear infinite;
+}
+
+.parth-particle:nth-child(2){
+  left:10%;
+  animation-delay:0s;
+}
+
+.parth-particle:nth-child(3){
+  left:32%;
+  animation-delay:2s;
+}
+
+.parth-particle:nth-child(4){
+  left:68%;
+  animation-delay:4s;
+}
+
+.parth-particle:nth-child(5){
+  left:90%;
+  animation-delay:1s;
+}
+
+@keyframes parthParticle{
+  0%{
+    transform:translateY(0) scale(.4);
+    opacity:0;
+  }
+  20%{
+    opacity:.75;
+  }
+  100%{
+    transform:translateY(-110vh) scale(1.3);
+    opacity:0;
+  }
+}
+
+/* MAIN CONTENT */
+.parth-content{
+  position:relative;
+  z-index:5;
+  width:100%;
+  max-width:760px;
+  text-align:center;
+  animation:parthEntry .9s ease-out both;
+}
+
+@keyframes parthEntry{
+  from{
+    opacity:0;
+    transform:translateY(28px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* PROFILE LOGO */
+.parth-profile-wrap{
+  position:relative;
+  width:145px;
+  height:145px;
+  margin:0 auto 25px;
+  padding:5px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff2d96,#8e42ff,#15c9ff);
+  box-shadow:
+    0 0 0 9px rgba(255,255,255,.06),
+    0 0 45px rgba(255,45,150,.55);
+  animation:parthProfileFloat 3s ease-in-out infinite;
+}
+
+.parth-profile-wrap::after{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  animation:parthProfilePulse 2s ease-out infinite;
+}
+
+.parth-profile{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center top;
+  border:4px solid #0a0714;
+  border-radius:50%;
+}
+
+.parth-online{
+  position:absolute;
+  z-index:4;
+  right:10px;
+  bottom:12px;
+  width:23px;
+  height:23px;
+  border:4px solid #0a0714;
+  border-radius:50%;
+  background:#2dff85;
+  box-shadow:0 0 16px rgba(45,255,133,.9);
+}
+
+@keyframes parthProfileFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-9px)}
+}
+
+@keyframes parthProfilePulse{
+  from{
+    transform:scale(.9);
+    opacity:.8;
+  }
+  to{
+    transform:scale(1.2);
+    opacity:0;
+  }
+}
+
+/* BADGE */
+.parth-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+  padding:8px 17px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(10px);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.parth-badge-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ff2a8b;
+  box-shadow:0 0 12px #ff2a8b;
+  animation:parthBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes parthBlink{
+  50%{opacity:.3}
+}
+
+/* HEADING */
+.parth-heading{
+  margin:0 0 10px;
+  color:#fff;
+  font-size:clamp(42px,7vw,76px);
+  line-height:1.04;
+  font-weight:900;
+  letter-spacing:-3px;
+  text-transform:uppercase;
+  text-shadow:0 8px 30px rgba(0,0,0,.55);
+}
+
+.parth-heading span{
+  display:block;
+  color:transparent;
+  background:linear-gradient(90deg,#ff3b9d 0%,#fff 48%,#32cfff 100%);
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+
+.parth-description{
+  max-width:560px;
+  margin:5px auto 25px;
+  color:rgba(255,255,255,.76);
+  font-size:15px;
+  line-height:1.7;
+  font-weight:400;
+}
+
+/* CTA BUTTON */
+.parth-telegram-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+  min-width:270px;
+  padding:17px 30px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:999px;
+  color:#fff !important;
+  background:linear-gradient(90deg,#ff278d,#7b3fff,#168dff);
+  box-shadow:
+    0 15px 40px rgba(138,54,255,.42),
+    inset 0 1px 0 rgba(255,255,255,.35);
+  text-decoration:none !important;
+  text-transform:uppercase;
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.7px;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+
+.parth-telegram-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+  transform:skewX(-25deg);
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.5),
+    transparent
+  );
+  animation:parthButtonShine 3s ease-in-out infinite;
+}
+
+@keyframes parthButtonShine{
+  0%,35%{left:-120%}
+  70%,100%{left:150%}
+}
+
+.parth-telegram-btn:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:
+    0 20px 50px rgba(138,54,255,.58),
+    0 0 28px rgba(255,45,150,.35);
+}
+
+.parth-telegram-btn:active{
+  transform:scale(.97);
+}
+
+.parth-telegram-btn svg,
+.parth-telegram-btn span{
+  position:relative;
+  z-index:2;
+}
+
+.parth-telegram-btn svg{
+  width:22px;
+  height:22px;
+  flex:none;
+}
+
+/* 18+ NOTICE */
+.parth-age-notice{
+  width:100%;
+  max-width:520px;
+  margin:24px auto 0;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+  color:rgba(255,255,255,.72);
+  background:rgba(0,0,0,.28);
+  backdrop-filter:blur(9px);
+  font-size:11px;
+  line-height:1.6;
+}
+
+.parth-age-icon{
+  min-width:38px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #ff3b9d;
+  border-radius:50%;
+  color:#fff;
+  background:rgba(255,45,150,.15);
+  font-size:12px;
+  font-weight:800;
+}
+
+.parth-brand{
+  margin-top:30px;
+  color:rgba(255,255,255,.48);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.parth-brand strong{
+  color:#fff;
+  font-weight:700;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .parth-vip-page{
+    min-height:100svh;
+    padding:25px 15px;
+  }
+
+  .parth-profile-wrap{
+    width:112px;
+    height:112px;
+    margin-bottom:21px;
+  }
+
+  .parth-online{
+    right:5px;
+    bottom:8px;
+    width:20px;
+    height:20px;
+  }
+
+  .parth-badge{
+    margin-bottom:14px;
+    padding:7px 13px;
+    font-size:9px;
+    letter-spacing:1.1px;
+  }
+
+  .parth-heading{
+    margin-bottom:10px;
+    font-size:clamp(35px,11vw,52px);
+    line-height:1.07;
+    letter-spacing:-2px;
+  }
+
+  .parth-description{
+    margin-top:5px;
+    margin-bottom:22px;
+    font-size:13px;
+    line-height:1.65;
+  }
+
+  .parth-telegram-btn{
+    width:100%;
+    max-width:320px;
+    min-width:0;
+    padding:16px 20px;
+    font-size:13px;
+  }
+
+  .parth-age-notice{
+    max-width:340px;
+    padding:11px 12px;
+    gap:9px;
+    text-align:left;
+    font-size:10px;
+  }
+
+  .parth-age-icon{
+    min-width:35px;
+    height:35px;
+    font-size:11px;
+  }
+
+  .parth-brand{
+    margin-top:27px;
+  }
+
+  .parth-grid{
+    background-size:42px 42px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .parth-vip-page *,
+  .parth-vip-page::before,
+  .parth-vip-page::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+  }
+}
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '28910624115212316');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=28910624115212316&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<section class="parth-vip-page">
+
+  <div class="parth-grid"></div>
+
+  <span class="parth-particle"></span>
+  <span class="parth-particle"></span>
+  <span class="parth-particle"></span>
+  <span class="parth-particle"></span>
+
+  <div class="parth-content">
+
+    <div class="parth-profile-wrap">
+      <img
+        class="parth-profile"
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=85"
+        alt="Community profile"
+      >
+      <span class="parth-online"></span>
+    </div>
+
+    <div class="parth-badge">
+      <span class="parth-badge-dot"></span>
+      Official VIP Community
+    </div>
+
+    <h1 class="parth-heading">
+      Parth X
+      <span>Real VIP Community</span>
+    </h1>
+
+    <p class="parth-description">
+      Join our community for exclusive updates, important announcements and premium community content.
+    </p>
+
+    <a
+      class="parth-telegram-btn"
+      href="https://t.me/+-WVItQuSfINkNjg1"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M21.8 2.2c-.3-.2-.7-.3-1.1-.1L2.1 9.3c-.7.3-.8 1.2-.1 1.6l4.7 2.3 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.5 4.8 3.5c.6.4 1.4.1 1.5-.6l3.1-16.4c.1-.4 0-.8-.3-1ZM9.3 13.5l8.4-7.4-6.5 8.3-.5 2.5-1.4-3.4Z"/>
+      </svg>
+
+      <span>Join Telegram Channel</span>
+    </a>
+
+    <div class="parth-age-notice">
+      <div class="parth-age-icon">18+</div>
+
+      <div>
+        This community is intended only for users aged 18 years or above. Please join and participate responsibly.
+      </div>
+    </div>
+
+    <div class="parth-brand">
+      Designed by <strong>FLOX ADS</strong>
+    </div>
+
+  </div>
+</section>
