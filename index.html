@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Pixel Code -->
+   <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -20,829 +20,247 @@ src="https://www.facebook.com/tr?id=2554744784974201&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#002d24">
-  <title>Veer Game Admin Panel</title>
-
+  <meta name="theme-color" content="#070707">
+  <title>Earn With Jadeja</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;min-height:100%;font-family:'Poppins',sans-serif;background:#050505;color:#fff}
+    body{overflow-x:hidden}
 
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      font-family: "Poppins", sans-serif;
-      background: #00251e;
-      color: #ffffff;
-    }
-
-    body {
-      overflow-x: hidden;
-    }
-
-    .veer-page {
-      position: relative;
-      isolation: isolate;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 55px 18px 35px;
+    .jadeja-page{
+      position:relative;
+      min-height:100svh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      isolation:isolate;
+      padding:28px 18px;
       background:
-        radial-gradient(
-          circle at 50% -5%,
-          rgba(29, 225, 164, 0.17),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 8% 65%,
-          rgba(0, 183, 147, 0.11),
-          transparent 28%
-        ),
-        linear-gradient(
-          180deg,
-          #003b2f 0%,
-          #002d25 47%,
-          #001f1a 100%
-        );
+        radial-gradient(circle at 15% 18%,rgba(244,197,66,.18),transparent 28%),
+        radial-gradient(circle at 86% 78%,rgba(255,123,0,.13),transparent 31%),
+        linear-gradient(135deg,#050505 0%,#101010 48%,#050505 100%);
     }
 
-    .veer-page::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      opacity: 0.16;
-      background-image:
-        linear-gradient(
-          rgba(99, 255, 207, 0.08) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(99, 255, 207, 0.08) 1px,
-          transparent 1px
-        );
-      background-size: 52px 52px;
-      animation: gridMove 18s linear infinite;
-      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    .jadeja-page::before{
+      content:"";
+      position:absolute;
+      inset:-50%;
+      z-index:-3;
+      background:repeating-linear-gradient(115deg,transparent 0 72px,rgba(244,197,66,.045) 73px 74px);
+      animation:moveGrid 18s linear infinite;
     }
 
-    .glow {
-      position: absolute;
-      z-index: -2;
-      width: 330px;
-      height: 330px;
-      border-radius: 50%;
-      background: #13e2a2;
-      filter: blur(115px);
-      opacity: 0.12;
-      animation: glowMove 8s ease-in-out infinite alternate;
+    .glow{
+      position:absolute;
+      width:340px;
+      height:340px;
+      border-radius:50%;
+      filter:blur(90px);
+      opacity:.22;
+      z-index:-2;
+      animation:floatGlow 8s ease-in-out infinite alternate;
+    }
+    .glow.one{background:#f4c542;top:-140px;left:-100px}
+    .glow.two{background:#ff7300;right:-120px;bottom:-160px;animation-delay:-3s}
+
+    #particles{position:absolute;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
+    .particle{
+      position:absolute;
+      bottom:-30px;
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:#f4c542;
+      box-shadow:0 0 14px #f4c542;
+      opacity:0;
+      animation:rise linear infinite;
     }
 
-    .glow.one {
-      top: -180px;
-      left: -130px;
+    .card{
+      width:min(100%,970px);
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
+      overflow:hidden;
+      border:1px solid rgba(244,197,66,.25);
+      border-radius:28px;
+      background:rgba(12,12,12,.76);
+      box-shadow:0 28px 90px rgba(0,0,0,.58),0 0 45px rgba(244,197,66,.08);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      animation:cardIn .85s ease both;
     }
 
-    .glow.two {
-      right: -160px;
-      bottom: -190px;
-      background: #08c9c1;
-      animation-delay: -4s;
+    .visual{
+      position:relative;
+      min-height:540px;
+      padding:30px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:#111;
+    }
+    .visual::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.1) 58%,rgba(0,0,0,.3) 100%);
+    }
+    .model-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+    .photo-badge{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border:1px solid rgba(244,197,66,.38);
+      border-radius:999px;
+      background:rgba(0,0,0,.62);
+      color:#f8df8a;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      backdrop-filter:blur(10px);
+    }
+    .photo-badge i{width:8px;height:8px;border-radius:50%;background:#47e38a;box-shadow:0 0 10px #47e38a}
+
+    .content{padding:58px 54px;display:flex;flex-direction:column;justify-content:center}
+    .mini-label{
+      width:max-content;
+      margin-bottom:20px;
+      padding:8px 14px;
+      border:1px solid rgba(244,197,66,.48);
+      border-radius:999px;
+      color:#f4c542;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:1.4px;
+      text-transform:uppercase;
+    }
+    h1{font-size:clamp(38px,5.2vw,68px);line-height:1.03;letter-spacing:-2px;font-weight:800}
+    h1 span{display:block;color:#f4c542;text-shadow:0 0 30px rgba(244,197,66,.22)}
+    .description{max-width:520px;margin:20px 0 27px;color:#bdbdbd;font-size:15px;line-height:1.75}
+    .points{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+    .point{padding:8px 12px;border-radius:9px;background:#151515;border:1px solid #272727;color:#ddd;font-size:12px}
+    .point::before{content:"✓";margin-right:7px;color:#f4c542;font-weight:800}
+
+    .cta{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:11px;
+      width:100%;
+      min-height:58px;
+      padding:14px 24px;
+      overflow:hidden;
+      border:1px solid #f4c542;
+      border-radius:999px;
+      background:linear-gradient(100deg,#f4c542,#ffd96a,#e5ae20);
+      box-shadow:0 12px 35px rgba(244,197,66,.24);
+      color:#111;
+      font-size:15px;
+      font-weight:800;
+      letter-spacing:.7px;
+      text-decoration:none;
+      text-transform:uppercase;
+      transition:transform .25s ease,box-shadow .25s ease;
+    }
+    .cta::before{content:"";position:absolute;top:-50%;left:-90%;width:48%;height:200%;background:rgba(255,255,255,.55);transform:rotate(25deg);animation:shine 3.2s ease-in-out infinite}
+    .cta:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 17px 42px rgba(244,197,66,.38)}
+    .cta svg{width:22px;height:22px;fill:currentColor}
+
+    .notice{display:flex;align-items:flex-start;gap:10px;margin-top:19px;color:#888;font-size:11px;line-height:1.55}
+    .notice strong{color:#f4c542;white-space:nowrap}
+    .brand{margin-top:30px;text-align:center;color:#686868;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase}
+    .brand span{color:#f4c542}
+
+    @keyframes moveGrid{to{transform:translate3d(110px,70px,0)}}
+    @keyframes floatGlow{to{transform:translate(70px,50px) scale(1.18)}}
+    @keyframes cardIn{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
+    @keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.65}85%{opacity:.35}100%{transform:translateY(-110vh) scale(1.1);opacity:0}}
+    @keyframes shine{0%,55%{left:-90%}80%,100%{left:140%}}
+
+    @media(max-width:760px){
+      .jadeja-page{padding:16px 12px;align-items:flex-start}
+      .card{grid-template-columns:1fr;border-radius:22px;max-width:480px}
+      .visual{min-height:285px;padding:20px}
+      .model-photo{object-position:center 28%}
+      .content{padding:32px 22px 27px;text-align:center;align-items:center}
+      .mini-label{margin-bottom:15px}
+      h1{font-size:clamp(35px,11vw,49px);letter-spacing:-1.5px}
+      .description{margin:16px 0 21px;font-size:13px;line-height:1.65}
+      .points{justify-content:center;margin-bottom:22px;gap:8px}
+      .point{font-size:10px;padding:7px 9px}
+      .cta{min-height:54px;font-size:13px;padding:13px 18px}
+      .notice{text-align:left;font-size:10px;margin-top:16px}
+      .brand{margin-top:23px}
     }
 
-    .particle-box {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
+    @media(max-width:360px){
+      .visual{min-height:245px}
+      .content{padding-left:17px;padding-right:17px}
+      h1{font-size:34px}
     }
 
-    .particle {
-      position: absolute;
-      bottom: -20px;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #62ffd0;
-      box-shadow: 0 0 11px #42eeb9;
-      opacity: 0;
-      animation: particleUp linear infinite;
-    }
-
-    .page-wrap {
-      width: min(100%, 540px);
-      animation: cardEnter 0.8s ease both;
-    }
-
-    .download-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(187, 255, 234, 0.24);
-      border-radius: 38px;
-      background: linear-gradient(
-        155deg,
-        rgba(17, 92, 75, 0.94),
-        rgba(5, 56, 47, 0.95)
-      );
-      box-shadow:
-        0 32px 90px rgba(0, 0, 0, 0.48),
-        0 0 0 1px rgba(72, 255, 198, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-
-    .download-card::before {
-      content: "";
-      position: absolute;
-      top: -120px;
-      left: 50%;
-      width: 280px;
-      height: 210px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: rgba(44, 255, 187, 0.08);
-      filter: blur(30px);
-      pointer-events: none;
-    }
-
-    .card-content {
-      position: relative;
-      padding: 35px 32px 27px;
-      text-align: center;
-    }
-
-    .official-badge {
-      width: max-content;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 0 auto 24px;
-      padding: 8px 14px;
-      border: 1px solid rgba(112, 255, 211, 0.25);
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.13);
-      color: #a8f6dd;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1.1px;
-      text-transform: uppercase;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    }
-
-    .official-badge i {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #44f0a8;
-      box-shadow: 0 0 11px #44f0a8;
-      animation: statusBlink 1.7s ease-in-out infinite;
-    }
-
-    .app-logo {
-      position: relative;
-      width: 156px;
-      height: 156px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 29px;
-      border: 11px solid #f6fffc;
-      border-radius: 42px;
-      background: radial-gradient(
-        circle at 35% 25%,
-        #303735,
-        #171b1a 55%,
-        #101312
-      );
-      box-shadow:
-        0 16px 35px rgba(0, 0, 0, 0.42),
-        0 0 0 2px #21d69b,
-        0 0 34px rgba(52, 255, 190, 0.17);
-      animation: logoFloat 4s ease-in-out infinite;
-    }
-
-    .app-logo::before {
-      content: "";
-      position: absolute;
-      inset: -16px;
-      border: 1px solid rgba(83, 255, 200, 0.16);
-      border-radius: 48px;
-      animation: logoPulse 2.5s ease-in-out infinite;
-    }
-
-    .logo-name {
-      position: relative;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -1.2px;
-      font-style: italic;
-      text-shadow:
-        0 2px 4px #000000,
-        0 0 12px rgba(255, 255, 255, 0.12);
-    }
-
-    .logo-name span {
-      color: #36e5a8;
-    }
-
-    .logo-name i {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #ffdd5c;
-      box-shadow: 0 0 8px #ffcf30;
-    }
-
-    .logo-name i:nth-child(1) {
-      top: -9px;
-      left: 16px;
-    }
-
-    .logo-name i:nth-child(2) {
-      top: -5px;
-      right: 13px;
-      background: #ff5f66;
-      box-shadow: 0 0 8px #ff5f66;
-    }
-
-    h1 {
-      font-size: clamp(38px, 8vw, 53px);
-      line-height: 1.08;
-      font-weight: 800;
-      letter-spacing: -2px;
-    }
-
-    h1 span {
-      display: block;
-    }
-
-    .subtitle {
-      max-width: 420px;
-      margin: 19px auto 30px;
-      color: #a8bbb5;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.55;
-    }
-
-    .app-data {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      overflow: hidden;
-      margin-bottom: 33px;
-      border: 1px solid rgba(215, 255, 243, 0.31);
-      border-radius: 21px;
-      background: rgba(255, 255, 255, 0.025);
-    }
-
-    .data-item {
-      padding: 17px 8px 16px;
-    }
-
-    .data-item + .data-item {
-      border-left: 1px solid rgba(215, 255, 243, 0.21);
-    }
-
-    .data-item small {
-      display: block;
-      margin-bottom: 5px;
-      color: #a6bcb5;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-    }
-
-    .data-item strong {
-      display: block;
-      color: #f8fffc;
-      font-size: 19px;
-      font-weight: 700;
-    }
-
-    .download-button {
-      position: relative;
-      width: 100%;
-      min-height: 75px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      overflow: hidden;
-      border: 0;
-      border-radius: 22px;
-      background: linear-gradient(
-        105deg,
-        #31e978 0%,
-        #22e3ac 55%,
-        #20d4d7 100%
-      );
-      background-size: 180% 100%;
-      color: #052c22;
-      box-shadow: 0 15px 35px rgba(17, 226, 157, 0.22);
-      font-family: "Poppins", sans-serif;
-      font-size: 21px;
-      font-weight: 800;
-      text-decoration: none;
-      animation:
-        buttonGradient 4s ease infinite,
-        buttonGlow 2.3s ease-in-out infinite;
-      transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
-    }
-
-    .download-button:hover {
-      transform: translateY(-3px) scale(1.012);
-      filter: brightness(1.07);
-    }
-
-    .download-button::before {
-      content: "";
-      position: absolute;
-      top: -65%;
-      left: -75%;
-      width: 42%;
-      height: 230%;
-      background: rgba(255, 255, 255, 0.45);
-      transform: rotate(24deg);
-      animation: shine 3.2s ease-in-out infinite;
-    }
-
-    .download-button svg {
-      width: 26px;
-      height: 26px;
-      fill: currentColor;
-    }
-
-    .install-note {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 19px;
-      color: #aebeb9;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.55;
-    }
-
-    .install-note svg {
-      width: 15px;
-      height: 15px;
-      fill: #52eeb8;
-      flex: 0 0 auto;
-    }
-
-    .trust-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 17px;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 8px 5px;
-      border: 1px solid rgba(196, 255, 237, 0.1);
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.08);
-      color: #8da69e;
-      font-size: 9px;
-      font-weight: 600;
-    }
-
-    .trust-item svg {
-      width: 12px;
-      height: 12px;
-      fill: #4ce9b3;
-    }
-
-    .card-links {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 31px -32px -27px;
-      padding: 20px 15px;
-      border-top: 1px solid rgba(198, 255, 237, 0.15);
-      color: #a8bbb5;
-      font-size: 12px;
-    }
-
-    .age-notice {
-      margin: 22px auto 0;
-      text-align: center;
-      color: #879c96;
-      font-size: 11px;
-      line-height: 1.55;
-    }
-
-    .age-notice strong {
-      color: #d7e6e1;
-      font-weight: 600;
-    }
-
-    .brand {
-      margin-top: 14px;
-      text-align: center;
-      color: #718781;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-    }
-
-    .brand span {
-      color: #44eeb5;
-    }
-
-    @keyframes gridMove {
-      to {
-        background-position: 52px 52px;
-      }
-    }
-
-    @keyframes glowMove {
-      to {
-        transform: translate(70px, 50px) scale(1.15);
-      }
-    }
-
-    @keyframes cardEnter {
-      from {
-        opacity: 0;
-        transform: translateY(28px) scale(0.985);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @keyframes logoPulse {
-      50% {
-        transform: scale(1.06);
-        opacity: 0.28;
-      }
-    }
-
-    @keyframes logoFloat {
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
-    @keyframes statusBlink {
-      50% {
-        opacity: 0.35;
-        transform: scale(0.75);
-      }
-    }
-
-    @keyframes buttonGradient {
-      50% {
-        background-position: 100% 0;
-      }
-    }
-
-    @keyframes buttonGlow {
-      50% {
-        box-shadow: 0 18px 45px rgba(17, 226, 157, 0.35);
-      }
-    }
-
-    @keyframes shine {
-      0%,
-      55% {
-        left: -75%;
-      }
-
-      85%,
-      100% {
-        left: 140%;
-      }
-    }
-
-    @keyframes particleUp {
-      0% {
-        transform: translateY(0);
-        opacity: 0;
-      }
-
-      16% {
-        opacity: 0.5;
-      }
-
-      100% {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .veer-page {
-        padding: 24px 22px 22px;
-        align-items: center;
-      }
-
-      .download-card {
-        border-radius: 33px;
-      }
-
-      .card-content {
-        padding: 29px 27px 25px;
-      }
-
-      .official-badge {
-        margin-bottom: 21px;
-      }
-
-      .app-logo {
-        width: 138px;
-        height: 138px;
-        margin-bottom: 27px;
-        border-width: 10px;
-        border-radius: 38px;
-      }
-
-      .logo-name {
-        font-size: 18px;
-      }
-
-      h1 {
-        font-size: 42px;
-        letter-spacing: -1.7px;
-      }
-
-      .subtitle {
-        margin: 17px auto 27px;
-        font-size: 14px;
-      }
-
-      .data-item {
-        padding: 15px 5px;
-      }
-
-      .data-item small {
-        font-size: 10px;
-      }
-
-      .data-item strong {
-        font-size: 17px;
-      }
-
-      .download-button {
-        min-height: 69px;
-        font-size: 19px;
-      }
-
-      .card-links {
-        margin-right: -27px;
-        margin-bottom: -25px;
-        margin-left: -27px;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .veer-page {
-        padding-right: 13px;
-        padding-left: 13px;
-      }
-
-      .card-content {
-        padding-right: 19px;
-        padding-left: 19px;
-      }
-
-      .app-logo {
-        width: 120px;
-        height: 120px;
-        border-width: 8px;
-        border-radius: 32px;
-      }
-
-      .logo-name {
-        font-size: 15px;
-      }
-
-      h1 {
-        font-size: 36px;
-      }
-
-      .subtitle {
-        font-size: 12px;
-      }
-
-      .app-data {
-        border-radius: 17px;
-      }
-
-      .data-item strong {
-        font-size: 15px;
-      }
-
-      .download-button {
-        min-height: 61px;
-        border-radius: 18px;
-        font-size: 17px;
-      }
-
-      .card-links {
-        margin-right: -19px;
-        margin-left: -19px;
-        font-size: 11px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-      }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;scroll-behavior:auto!important}
     }
   </style>
 </head>
-
 <body>
-
-  <main class="veer-page">
-
+  <main class="jadeja-page">
     <div class="glow one"></div>
     <div class="glow two"></div>
+    <div id="particles" aria-hidden="true"></div>
 
-    <div
-      class="particle-box"
-      id="particleBox"
-      aria-hidden="true">
-    </div>
-
-    <div class="page-wrap">
-
-      <section
-        class="download-card"
-        aria-label="Veer Game Admin Panel APK download">
-
-        <div class="card-content">
-
-          <div class="official-badge">
-            <i></i>
-            Official Android Access
-          </div>
-
-          <div
-            class="app-logo"
-            aria-label="Veer Game logo">
-
-            <div class="logo-name">
-              <i></i>
-              <i></i>
-              VEER.<span>GAME</span>
-            </div>
-
-          </div>
-
-          <h1>
-            <span>Veer Game</span>
-            <span>Admin Panel</span>
-          </h1>
-
-          <p class="subtitle">
-            Private Android app access for registered members.
-          </p>
-
-          <div class="app-data">
-
-            <div class="data-item">
-              <small>Version</small>
-              <strong>1.0.5</strong>
-            </div>
-
-            <div class="data-item">
-              <small>Size</small>
-              <strong>1.4 MB</strong>
-            </div>
-
-            <div class="data-item">
-              <small>Type</small>
-              <strong>APK</strong>
-            </div>
-
-          </div>
-
-          <a
-            class="download-button"
-            href="https://nx3r.com/dl/VeerWin%20VIP.apk"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M11 3h2v9.59l3.3-3.29 1.4 1.4-5.7 5.7-5.7-5.7 1.4-1.4 3.3 3.29V3Zm-6 14v2h14v-2h2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2h2Z"/>
-            </svg>
-
-            Download APK
-          </a>
-
-          <p class="install-note">
-
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m12 2 7 3v6c0 5-3 9-7 11-4-2-7-6-7-11V5l7-3Zm0 3.2L7 7.3V11c0 3.7 2 6.8 5 8.6 3-1.8 5-4.9 5-8.6V7.3l-5-2.1Zm-1 9.6-2.7-2.7 1.4-1.4 1.3 1.3 3.3-3.3 1.4 1.4-4.7 4.7Z"/>
-            </svg>
-
-            Download, install, then register inside the app.
-          </p>
-
-          <div class="trust-row">
-
-            <div class="trust-item">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M12 2 4 5v6c0 5.1 3.4 9.7 8 11 4.6-1.3 8-5.9 8-11V5l-8-3Z"/>
-              </svg>
-
-              Private Access
-            </div>
-
-            <div class="trust-item">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9h14v-9a2 2 0 0 0-2-2Zm-7-2a2 2 0 0 1 4 0v2h-4V6Z"/>
-              </svg>
-
-              Member Login
-            </div>
-
-            <div class="trust-item">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M17 1.8 15.8 4A8 8 0 0 0 8.2 4L7 1.8 5.7 2.5 7 4.9A8 8 0 0 0 4 11h16a8 8 0 0 0-3-6.1l1.3-2.4L17 1.8ZM8 8H6.5V6.5H8V8Zm9.5 0H16V6.5h1.5V8Z"/>
-              </svg>
-
-              Android APK
-            </div>
-
-          </div>
-
-          <div class="card-links">
-            <span>Privacy</span>
-            <span>Terms</span>
-          </div>
-
-        </div>
-      </section>
-
-      <p class="age-notice">
-        <strong>18+ only.</strong>
-        Private access only. Follow applicable local rules and review app
-        permissions before installation.
-      </p>
-
-      <div class="brand">
-        ADS BY <span>FLOX ADS</span>
+    <section class="card" aria-label="Earn With Jadeja community">
+      <div class="visual">
+        <img class="model-photo" src="https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Adult woman portrait" loading="eager">
+        <div class="photo-badge"><i></i> Community is live</div>
       </div>
 
-    </div>
+      <div class="content">
+        <div class="mini-label">Exclusive 18+ Community</div>
+        <h1>EARN WITH <span>JADEJA</span></h1>
+        <p class="description">Join the private Telegram community for regular updates, useful insights and exclusive content—all in one place.</p>
+
+        <div class="points">
+          <div class="point">Daily Updates</div>
+          <div class="point">Private Community</div>
+          <div class="point">Instant Access</div>
+        </div>
+
+        <a class="cta" href="https://t.me/+nSoQ_FUlmz80YzM1" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 3.3a1.55 1.55 0 0 0-1.61-.27L2.96 9.64a1.44 1.44 0 0 0 .09 2.72l4.37 1.45 1.67 5.16a1.24 1.24 0 0 0 2.1.47l2.43-2.49 4.52 3.32a1.54 1.54 0 0 0 2.43-.93l1.86-14.6a1.56 1.56 0 0 0-.73-1.44ZM9.33 13.05l8.55-5.3-6.74 6.95-.75 2.62-1.06-4.27Z"/></svg>
+          Join Telegram Channel
+        </a>
+
+        <div class="notice"><strong>18+ ONLY</strong><span>This community is intended only for adults. No income or result is guaranteed; always make informed decisions.</span></div>
+        <div class="brand">Powered by <span>FLOX ADS</span></div>
+      </div>
+    </section>
   </main>
 
   <script>
-    (function () {
-      var box = document.getElementById("particleBox");
-
-      if (
-        !box ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        return;
-      }
-
-      for (var i = 0; i < 18; i++) {
-        var dot = document.createElement("span");
-
-        dot.className = "particle";
-        dot.style.left = Math.random() * 100 + "%";
-        dot.style.animationDuration = 8 + Math.random() * 8 + "s";
-        dot.style.animationDelay = -Math.random() * 14 + "s";
-
+    (function(){
+      var box=document.getElementById('particles');
+      if(!box || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      for(var i=0;i<26;i++){
+        var dot=document.createElement('span');
+        dot.className='particle';
+        dot.style.left=(Math.random()*100)+'%';
+        dot.style.animationDuration=(7+Math.random()*9)+'s';
+        dot.style.animationDelay=(-Math.random()*14)+'s';
+        dot.style.transform='scale('+(0.5+Math.random()*1.2)+')';
         box.appendChild(dot);
       }
     })();
   </script>
-
 </body>
 </html>
