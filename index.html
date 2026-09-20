@@ -15,9 +15,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '805716872634108');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=805716872634108&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
   
   <meta charset="UTF-8">
@@ -55,6 +52,10 @@ src="https://www.facebook.com/tr?id=805716872634108&ev=PageView&noscript=1"
   </style>
 </head>
 <body>
+  <!-- Meta Pixel fallback for visitors with JavaScript disabled -->
+  <noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=805716872634108&amp;ev=PageView&amp;noscript=1"
+  /></noscript>
   <main class="yuvi-page">
     <div class="pink-glow one"></div><div class="pink-glow two"></div>
     <div class="flower left">🌸</div><div class="flower right">🌺</div>
@@ -71,7 +72,7 @@ src="https://www.facebook.com/tr?id=805716872634108&ev=PageView&noscript=1"
           <div class="highlight"><svg viewBox="0 0 24 24"><path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9h14v-9a2 2 0 0 0-2-2Z"/></svg>Private Access</div>
           <div class="highlight"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>Instant Join</div>
         </div>
-        <a class="cta" href="https://t.me/+wEoLF8Wqw500ZTk1" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M21.7 3.3a1.55 1.55 0 0 0-1.61-.27L2.96 9.64a1.44 1.44 0 0 0 .09 2.72l4.37 1.45 1.67 5.16a1.24 1.24 0 0 0 2.1.47l2.43-2.49 4.52 3.32a1.54 1.54 0 0 0 2.43-.93l1.86-14.6a1.56 1.56 0 0 0-.73-1.44ZM9.33 13.05l8.55-5.3-6.74 6.95-.75 2.62-1.06-4.27Z"/></svg>Join Yuvi Community</a>
+        <a class="cta" id="telegram-join-btn" href="https://t.me/+wEoLF8Wqw500ZTk1" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M21.7 3.3a1.55 1.55 0 0 0-1.61-.27L2.96 9.64a1.44 1.44 0 0 0 .09 2.72l4.37 1.45 1.67 5.16a1.24 1.24 0 0 0 2.1.47l2.43-2.49 4.52 3.32a1.54 1.54 0 0 0 2.43-.93l1.86-14.6a1.56 1.56 0 0 0-.73-1.44ZM9.33 13.05l8.55-5.3-6.74 6.95-.75 2.62-1.06-4.27Z"/></svg>Join Yuvi Community</a>
         <p class="micro"><b>18+ only.</b> This private community is intended for adults. No result or income is guaranteed—always make informed decisions.</p>
         <div class="footer-line">POWERED BY <strong>FLOX ADS</strong></div>
       </div>
@@ -79,6 +80,17 @@ src="https://www.facebook.com/tr?id=805716872634108&ev=PageView&noscript=1"
   </main>
   <script>
     (function(){var box=document.getElementById('petals');if(!box||matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(var i=0;i<22;i++){var p=document.createElement('span');p.className='petal';p.style.left=Math.random()*100+'%';p.style.animationDuration=7+Math.random()*8+'s';p.style.animationDelay=-Math.random()*14+'s';p.style.transform='scale('+(0.55+Math.random()*.8)+')';box.appendChild(p)}})();
+
+    /* Track the Telegram CTA as a Meta Lead conversion. */
+    (function(){
+      var joinButton=document.getElementById('telegram-join-btn');
+      if(!joinButton)return;
+      joinButton.addEventListener('click',function(){
+        if(typeof window.fbq==='function'){
+          window.fbq('track','Lead',{content_name:'Yuvi Community Telegram Join'});
+        }
+      });
+    })();
   </script>
 </body>
 </html>
